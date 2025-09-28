@@ -1,0 +1,165 @@
+.detail-container {
+	max-width: 800px;
+	margin: 32px auto;
+	padding: 0 16px
+}
+
+.status {
+	color: #555;
+	text-align: center;
+	padding: 32px
+}
+
+.error {
+	color: #c00;
+	text-align: center;
+	padding: 32px
+}
+
+.detail-card {
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+	overflow: hidden
+}
+
+.detail-header {
+	display: flex;
+	gap: 24px;
+	padding: 24px;
+	background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)
+}
+
+.detail-info {
+	flex: 1
+}
+
+.detail-info h1 {
+	margin: 0 0 8px;
+	color: #1f2937;
+	font-size: 28px
+}
+
+.types {
+	display: flex;
+	gap: 8px;
+	margin-top: 12px
+}
+
+.type {
+	font-size: 14px;
+	background: #e0e7ff;
+	color: #3730a3;
+	border-radius: 12px;
+	padding: 4px 12px;
+	text-transform: capitalize
+}
+
+.detail-image {
+	flex: 0 0 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
+.detail-image img {
+	max-width: 100%;
+	max-height: 200px;
+	object-fit: contain
+}
+
+.detail-sections {
+	padding: 24px
+}
+
+.section {
+	margin-bottom: 32px
+}
+
+.section h2 {
+	color: #1f2937;
+	margin: 0 0 16px;
+	font-size: 20px;
+	border-bottom: 2px solid #e5e7eb;
+	padding-bottom: 8px
+}
+
+.basic-info {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px
+}
+
+.basic-info div {
+	font-size: 16px;
+	color: #4b5563
+}
+
+.abilities {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px
+}
+
+.ability {
+	background: #fef3c7;
+	color: #92400e;
+	border-radius: 8px;
+	padding: 6px 12px;
+	font-size: 14px
+}
+
+.stats-grid {
+	display: grid;
+	gap: 12px
+}
+
+.stat-item {
+	display: flex;
+	align-items: center;
+	gap: 12px
+}
+
+.stat-name {
+	flex: 0 0 80px;
+	font-weight: 600;
+	color: #374151
+}
+
+.stat-bar {
+	flex: 1;
+	height: 8px;
+	background: #e5e7eb;
+	border-radius: 4px;
+	overflow: hidden
+}
+
+.stat-fill {
+	height: 100%;
+	background: #6366f1;
+	transition: width .3s
+}
+
+.stat-value {
+	flex: 0 0 40px;
+	text-align: right;
+	font-weight: 600;
+	color: #1f2937
+}
+
+@media (max-width:768px) {
+	.detail-header {
+		flex-direction: column;
+		text-align: center
+	}
+
+	.detail-image {
+		flex: 1;
+		max-width: 200px;
+		margin: 0 auto
+	}
+
+	.basic-info {
+		grid-template-columns: 1fr
+	}
+}
