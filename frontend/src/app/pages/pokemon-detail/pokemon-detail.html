@@ -1,0 +1,83 @@
+<div class="detail-container">
+  <div *ngIf="loading" class="status">Carregando...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="pokemon" class="detail-card">
+    <div class="detail-header">
+      <div class="detail-info">
+        <h1>#{{ pokemon.id }} - {{ pokemon.nome | titlecase }}</h1>
+        <div class="types">
+          <span class="type" *ngFor="let t of pokemon.tipos">{{ t }}</span>
+        </div>
+      </div>
+      <div class="detail-image">
+        <img [src]="pokemon.imagem" [alt]="pokemon.nome" />
+      </div>
+    </div>
+
+    <div class="detail-sections">
+      <div class="section">
+        <h2>Dados Básicos</h2>
+        <div class="basic-info">
+          <div><strong>Altura:</strong> {{ pokemon.altura / 10 }} m</div>
+          <div><strong>Peso:</strong> {{ pokemon.peso / 10 }} kg</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Habilidades</h2>
+        <div class="abilities">
+          <span class="ability" *ngFor="let h of pokemon.habilidades">{{ h | titlecase }}</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Status de Batalha</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-name">HP</span>
+            <div class="stat-bar">
+              <div class="stat-fill" [style.width.%]="pokemon.stats.hp"></div>
+            </div>
+            <span class="stat-value">{{ pokemon.stats.hp }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-name">Ataque</span>
+            <div class="stat-bar">
+              <div class="stat-fill" [style.width.%]="pokemon.stats.attack"></div>
+            </div>
+            <span class="stat-value">{{ pokemon.stats.attack }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-name">Defesa</span>
+            <div class="stat-bar">
+              <div class="stat-fill" [style.width.%]="pokemon.stats.defense"></div>
+            </div>
+            <span class="stat-value">{{ pokemon.stats.defense }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-name">Sp. Atk</span>
+            <div class="stat-bar">
+              <div class="stat-fill" [style.width.%]="pokemon.stats['special-attack']"></div>
+            </div>
+            <span class="stat-value">{{ pokemon.stats['special-attack'] }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-name">Sp. Def</span>
+            <div class="stat-bar">
+              <div class="stat-fill" [style.width.%]="pokemon.stats['special-defense']"></div>
+            </div>
+            <span class="stat-value">{{ pokemon.stats['special-defense'] }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-name">Velocidade</span>
+            <div class="stat-bar">
+              <div class="stat-fill" [style.width.%]="pokemon.stats.speed"></div>
+            </div>
+            <span class="stat-value">{{ pokemon.stats.speed }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

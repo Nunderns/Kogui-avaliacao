@@ -1,0 +1,73 @@
+<div class="hero">
+  <div class="hero-content">
+    <h1>Pokédex Digital</h1>
+    <p>Explore o mundo dos Pokémon com nossa Pokédex interativa. Descubra informações detalhadas sobre cada criatura.</p>
+    <div class="stats">
+      <div class="stat"><span>{{ cards().length }}</span><small>Pokémon</small></div>
+      <div class="stat"><span>{{ uniqueTypesCount() }}</span><small>Tipos</small></div>
+      <div class="stat"><span>{{ generation }}</span><small>Geração</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="filters">
+    <button class="chip" [class.active]="generation===1" (click)="onGenerationChange(1)">Gen 1</button>
+    <button class="chip" [class.active]="generation===2" (click)="onGenerationChange(2)">Gen 2</button>
+    <button class="chip" [class.active]="generation===3" (click)="onGenerationChange(3)">Gen 3</button>
+    <button class="chip" [class.active]="generation===4" (click)="onGenerationChange(4)">Gen 4</button>
+    <button class="chip" [class.active]="generation===5" (click)="onGenerationChange(5)">Gen 5</button>
+    <button class="chip" [class.active]="generation===6" (click)="onGenerationChange(6)">Gen 6</button>
+    <button class="chip" [class.active]="generation===7" (click)="onGenerationChange(7)">Gen 7</button>
+    <button class="chip" [class.active]="generation===8" (click)="onGenerationChange(8)">Gen 8</button>
+    <button class="chip" [class.active]="generation===9" (click)="onGenerationChange(9)">Gen 9</button>
+  </div>
+  <div class="search">
+    <input type="text" placeholder="Buscar por nome" [(ngModel)]="nameQuery" />
+  </div>
+</div>
+
+<div class="content">
+  <h2>Pokémon Descobertos</h2>
+  <div class="status" *ngIf="loading">Carregando...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="grid">
+    <div class="card" *ngFor="let p of filtered()" 
+         (mouseenter)="onCardHover(p)" 
+         (mouseleave)="onCardHover(null)"
+         (click)="onCardClick(p)">
+      <div class="card-header">
+        <span class="id">#{{ p.id | number:'2.0-0' }}</span>
+        <div class="types">
+          <span class="type" *ngFor="let t of p.tipos">{{ t }}</span>
+        </div>
+      </div>
+      <div class="art">
+        <img [src]="p.imagem" [alt]="p.nome" />
+      </div>
+      <div class="name">{{ p.nome | titlecase }}</div>
+      <div class="card-actions">
+        <button class="action-btn favorite" (click)="toggleFavorite(p); $event.stopPropagation()" [class.active]="isFavorite(p)">
+          <span class="icon">{{ isFavorite(p) ? '❤️' : '🤍' }}</span>
+          <span class="text">Favorito</span>
+        </button>
+        <button class="action-btn battle-team" (click)="addToBattleTeam(p); $event.stopPropagation()" [disabled]="isInBattleTeam(p)">
+          <span class="icon">⚔️</span>
+          <span class="text">{{ isInBattleTeam(p) ? 'No Time' : 'Adicionar' }}</span>
+        </button>
+      </div>
+      <div class="tooltip" *ngIf="hoveredCard === p">
+        <div class="tooltip-header">{{ p.nome | titlecase }}</div>
+        <div class="tooltip-stats">
+          <div><strong>HP:</strong> {{ p.stats?.hp || '?' }}</div>
+          <div><strong>Ataque:</strong> {{ p.stats?.attack || '?' }}</div>
+          <div><strong>Defesa:</strong> {{ p.stats?.defense || '?' }}</div>
+          <div><strong>Sp. Atk:</strong> {{ p.stats?.['special-attack'] || '?' }}</div>
+          <div><strong>Sp. Def:</strong> {{ p.stats?.['special-defense'] || '?' }}</div>
+          <div><strong>Velocidade:</strong> {{ p.stats?.speed || '?' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
