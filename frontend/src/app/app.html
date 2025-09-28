@@ -10,6 +10,7 @@
         <span class="dropdown-arrow">▼</span>
       </div>
       <div class="dropdown-content" *ngIf="showDropdown">
+        <a routerLink="/reset-password" (click)="toggleDropdown()">Redefinir Senha</a>
         <a (click)="logout()">Sair</a>
       </div>
     </li>
