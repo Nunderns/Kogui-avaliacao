@@ -1,0 +1,24 @@
+<div class="pokemons-container">
+  <h2>Buscar Pokémon</h2>
+
+  <form (submit)="$event.preventDefault(); search()" class="search-form">
+    <input type="number" [(ngModel)]="searchId" name="searchId" placeholder="ID do Pokémon (ex.: 1)" />
+    <button type="submit">Buscar</button>
+  </form>
+
+  <div class="status" *ngIf="loading">Carregando...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="pokemon-card" *ngIf="pokemon">
+    <img [src]="pokemon.imagem" [alt]="pokemon.nome" />
+    <h3>#{{ pokemon.id }} - {{ pokemon.nome | titlecase }}</h3>
+    <div class="types">
+      <span class="type" *ngFor="let t of pokemon.tipos">{{ t }}</span>
+    </div>
+
+    <div class="actions">
+      <button type="button" (click)="toggleFavorito()">Favorito</button>
+      <button type="button" (click)="toggleGrupo()">Grupo de Batalha</button>
+    </div>
+  </div>
+</div>
