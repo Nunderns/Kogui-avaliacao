@@ -130,6 +130,52 @@ body {
   box-shadow: 0 4px 12px rgba(33, 150, 243, .3)
 }
 
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+  margin-bottom: 16px;
+}
+
+.spacer { flex: 1; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--hero);
+  border: 1px solid var(--hero);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(33,150,243,.08);
+  transform: translateY(-2px);
+}
+
+.pill {
+  background: #e3f2fd;
+  color: #0f172a;
+  border: 1px solid #bbdefb;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.pill.full {
+  background: #e8f5e9;
+  border-color: #c8e6c9;
+  color: #256029;
+}
+
 .team-info {
   margin-bottom: 24px
 }
@@ -166,6 +212,24 @@ body {
   gap: 16px
 }
 
+/* Skeleton grid */
+.grid.skeleton {
+  pointer-events: none;
+}
+
+.skeleton-card {
+  height: 260px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #f2f4f8 25%, #e9edf3 37%, #f2f4f8 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 .card {
   background: var(--card);
   border-radius: 14px;
@@ -187,32 +251,52 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 12px;
-  color: var(--muted)
+  color: #000
+}
+
+/* Actions container inside header: badge + remove button */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .id {
-  font-weight: 700
+  font-weight: 700;
+  color: #000000;
+  font-size: 15px
 }
 
 .remove-btn {
   background: none;
   border: none;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
+  padding: 6px 10px;
+  border-radius: 999px;
   transition: all 0.2s ease;
-  opacity: 0.7
+  color: #111827;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
 }
 
 .remove-btn:hover {
-  opacity: 1;
   background: #ffebee;
+  border-color: #ef9a9a;
+  color: #b71c1c;
   transform: scale(1.1)
 }
 
+.remove-icon { color: #c62828; }
+.remove-text { color: inherit; }
+
 .art {
-  background: #0c0c0c;
+  background: radial-gradient(120% 100% at 50% 0%, #0c0c0c 0%, #111827 60%, #0c0c0c 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,45 +307,67 @@ body {
   max-width: 90%;
   max-height: 90%;
   object-fit: contain;
-  image-rendering: auto
+  image-rendering: auto;
+  transition: transform .2s ease;
+}
+
+.card:hover .art img {
+  transform: scale(1.04);
 }
 
 .name {
   padding: 10px 12px;
-  font-weight: 700;
-  color: var(--text);
-  text-align: center
+  font-weight: 800;
+  color: #0f172a;
+  text-align: center;
+  font-size: 18px
 }
 
 .team-badge {
   position: absolute;
-  top: 8px;
+  top: auto;
+  bottom: 8px;
   right: 8px;
-  background: var(--hero);
-  color: #fff;
+  background: #ffffff;
+  color: #000000;
   border-radius: 20px;
-  padding: 4px 8px;
+  padding: 7px 12px;
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 12px;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(33, 150, 243, .3)
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .12)
+}
+
+/* When badge is inside header, don't absolutely position */
+.card-header .team-badge {
+  position: static;
+  bottom: auto;
+  right: auto;
 }
 
 .badge-icon {
-  font-size: 10px
+  font-size: 12px;
+  color: #000000;
 }
 
 .badge-text {
   text-transform: uppercase;
-  letter-spacing: 0.5px
+  letter-spacing: 0.6px;
+  color: #000000;
 }
 
 @media (max-width:768px) {
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
   }
+  .toolbar { flex-wrap: wrap; gap: 8px; }
+  .pill { order: 3; }
+  .btn-primary { order: 4; }
+  .btn-secondary { order: 1; }
+  .spacer { display: none; }
   
   .empty-state {
     padding: 32px 16px
