@@ -1,8 +1,28 @@
 import requests
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from .models import PokemonUsuario
+
+from .models import Usuario, PokemonUsuario
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+@authentication_classes([])
+def register_user(request):
+    try:
+        print(f"[DEBUG] register_user called; method={request.method}; user={request.user}; auth={getattr(request, 'auth', None)}")
+    except Exception:
+        print("[DEBUG] register_user called - could not print request.user")
+
+    username = request.data.get('username')
+    password = request.data.get('password')
+    if not username or not password:
+        return Response({'error': 'Usuário e senha obrigatórios.'}, status=status.HTTP_400_BAD_REQUEST)
+    if Usuario.objects.filter(username=username).exists():
+        return Response({'error': 'Usuário já existe.'}, status=status.HTTP_400_BAD_REQUEST)
+    user = Usuario.objects.create_user(username=username, password=password)
+    return Response({'message': 'Usuário criado com sucesso!'}, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET'])

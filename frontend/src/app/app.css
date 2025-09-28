@@ -1,0 +1,85 @@
+/* Navbar */
+.navbar {
+  background: #ef5350; /* vermelho Pokémon */
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  border-bottom: 4px solid #ffcc01; /* detalhe amarelo */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Brand */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.navbar-brand .logo {
+  width: 32px;
+  height: 32px;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* Links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.navbar-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.navbar-links a.active {
+  background: #ffcc01;
+  color: #222;
+  font-weight: bold;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .navbar-links a {
+    display: block;
+    width: 100%;
+  }
+}
+
+/* Main container */
+.main-container {
+  padding: 2rem;
+  background: #f7f7f7;
+  min-height: calc(100vh - 70px);
+}
