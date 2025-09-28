@@ -1,0 +1,52 @@
+<div class="hero">
+  <div class="hero-content">
+    <h1>Meu Time de Batalha</h1>
+    <p>Seu time de batalha atual com até {{ MAX_TEAM_SIZE }} Pokémon.</p>
+    <div class="stats">
+      <div class="stat"><span>{{ getTeamSize() }}</span><small>no Time</small></div>
+      <div class="stat"><span>{{ MAX_TEAM_SIZE - getTeamSize() }}</span><small>Vagas</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="status" *ngIf="loading">Carregando time de batalha...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error" class="battle-team-container">
+    <div *ngIf="battleTeam.length === 0" class="empty-state">
+      <div class="empty-icon">⚔️</div>
+      <h3>Seu time de batalha está vazio</h3>
+      <p>Volte para a Pokédex e adicione Pokémon ao seu time de batalha!</p>
+      <button class="btn-primary" (click)="router.navigate(['/pokedex'])">Ir para Pokédex</button>
+    </div>
+
+    <div *ngIf="battleTeam.length > 0" class="team-info">
+      <div class="team-status" [class.full]="isTeamFull()">
+        <span class="status-icon">{{ isTeamFull() ? '✅' : '⚡' }}</span>
+        <span class="status-text">
+          {{ isTeamFull() ? 'Time completo!' : `Time com ${getTeamSize()} de ${MAX_TEAM_SIZE} Pokémon` }}
+        </span>
+      </div>
+    </div>
+
+    <div *ngIf="battleTeam.length > 0" class="grid">
+      <div class="card" *ngFor="let p of battleTeam" (click)="onCardClick(p)">
+        <div class="card-header">
+          <span class="id">#{{ p.id | number:'2.0-0' }}</span>
+          <button class="remove-btn" (click)="removeFromBattleTeam(p, $event)" title="Remover do time">
+            ❌
+          </button>
+        </div>
+        <div class="art">
+          <img [src]="p.imagem" [alt]="p.nome" />
+        </div>
+        <div class="name">{{ p.nome | titlecase }}</div>
+        <div class="team-badge">
+          <span class="badge-icon">⚔️</span>
+          <span class="badge-text">Time</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

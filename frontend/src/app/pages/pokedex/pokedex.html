@@ -47,6 +47,16 @@
         <img [src]="p.imagem" [alt]="p.nome" />
       </div>
       <div class="name">{{ p.nome | titlecase }}</div>
+      <div class="card-actions">
+        <button class="action-btn favorite" (click)="toggleFavorite(p); $event.stopPropagation()" [class.active]="isFavorite(p)">
+          <span class="icon">{{ isFavorite(p) ? '❤️' : '🤍' }}</span>
+          <span class="text">Favorito</span>
+        </button>
+        <button class="action-btn battle-team" (click)="addToBattleTeam(p); $event.stopPropagation()" [disabled]="isInBattleTeam(p)">
+          <span class="icon">⚔️</span>
+          <span class="text">{{ isInBattleTeam(p) ? 'No Time' : 'Adicionar' }}</span>
+        </button>
+      </div>
       <div class="tooltip" *ngIf="hoveredCard === p">
         <div class="tooltip-header">{{ p.nome | titlecase }}</div>
         <div class="tooltip-stats">

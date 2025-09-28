@@ -4,6 +4,8 @@ import { RegisterComponent } from './pages/register/register';
 import { PokemonsComponent } from './pages/pokemons/pokemons';
 import { PokedexComponent } from './pages/pokedex/pokedex';
 import { PokemonDetailComponent } from './pages/pokemon-detail/pokemon-detail';
+import { FavoritesComponent } from './pages/favorites/favorites';
+import { BattleTeamComponent } from './pages/battle-team/battle-team';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -11,6 +13,8 @@ export const routes: Routes = [
   { path: 'pokemons', component: PokemonsComponent },
   { path: 'pokedex', component: PokedexComponent },
   { path: 'pokemon/:id', component: PokemonDetailComponent },
+  { path: 'favorites', component: FavoritesComponent },
+  { path: 'battle-team', component: BattleTeamComponent },
   { path: '', redirectTo: 'pokedex', pathMatch: 'full' },
   { path: '**', redirectTo: 'pokedex' }
 ];

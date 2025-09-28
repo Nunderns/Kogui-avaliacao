@@ -213,23 +213,12 @@ body {
 	color: var(--text)
 }
 
-.tooltip {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: rgba(0, 0, 0, .9);
-	color: #fff;
-	padding: 16px;
-	z-index: 2;
+.card-actions {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	border-radius: 14px;
-	opacity: 0;
-	transition: opacity .2s
+	gap: 8px;
+	padding: 8px 12px 12px;
+	border-top: 1px solid #f0f0f5;
+	background: #fafafa;
 }
 
 .card:hover .tooltip {
@@ -252,6 +241,65 @@ body {
 
 .tooltip-stats div {
 	font-size: 14px
+}
+
+.action-btn {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	padding: 8px 4px;
+	border: none;
+	border-radius: 8px;
+	background: #fff;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-size: 12px;
+	color: #666;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:hover:not(:disabled) {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.action-btn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.action-btn.favorite {
+	color: #e91e63;
+}
+
+.action-btn.favorite.active {
+	background: #fce4ec;
+	color: #c2185b;
+}
+
+.action-btn.favorite:hover:not(:disabled) {
+	background: #fce4ec;
+}
+
+.action-btn.battle-team {
+	color: #2196f3;
+}
+
+.action-btn.battle-team:hover:not(:disabled) {
+	background: #e3f2fd;
+}
+
+.action-btn .icon {
+	font-size: 16px;
+}
+
+.action-btn .text {
+	font-weight: 600;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
 }
 
 @media (max-width:768px) {

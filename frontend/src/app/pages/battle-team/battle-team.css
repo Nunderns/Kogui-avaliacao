@@ -1,0 +1,289 @@
+:root {
+  --hero: #2196f3;
+  --accent: #64b5f6;
+  --bg: #e3f2fd;
+  --card: #ffffff;
+  --text: #2c3e50;
+  --muted: #8b9bb4;
+}
+
+body {
+  background: var(--bg)
+}
+
+.hero {
+  background: linear-gradient(180deg, var(--hero) 0%, var(--hero) 70%, var(--accent) 70%, var(--accent) 100%);
+  padding: 32px 0 0
+}
+
+.hero-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  color: #1e293b
+}
+
+.hero h1 {
+  font-size: 28px;
+  margin: 0 0 6px;
+  color: #0f172a
+}
+
+.hero p {
+  opacity: .95;
+  margin: 0 0 16px;
+  color: #334155
+}
+
+.stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 8px
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, .2);
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #fff
+}
+
+.stat span {
+  font-weight: 700
+}
+
+.stat small {
+  opacity: .95
+}
+
+.content {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 16px
+}
+
+.status {
+  color: #555;
+  text-align: center;
+  padding: 32px;
+  font-size: 18px
+}
+
+.error {
+  color: #c00;
+  text-align: center;
+  padding: 32px;
+  font-size: 18px;
+  background: #ffebee;
+  border-radius: 12px;
+  margin: 16px 0
+}
+
+.battle-team-container {
+  min-height: 400px
+}
+
+.empty-state {
+  text-align: center;
+  padding: 64px 32px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08)
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px
+}
+
+.empty-state h3 {
+  color: #2c3e50;
+  margin: 0 0 8px;
+  font-size: 24px
+}
+
+.empty-state p {
+  color: #666;
+  margin: 0 0 24px;
+  font-size: 16px
+}
+
+.btn-primary {
+  background: var(--hero);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease
+}
+
+.btn-primary:hover {
+  background: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, .3)
+}
+
+.team-info {
+  margin-bottom: 24px
+}
+
+.team-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+  border-left: 4px solid var(--hero)
+}
+
+.team-status.full {
+  border-left-color: #4caf50;
+  background: #f1f8e9
+}
+
+.status-icon {
+  font-size: 24px
+}
+
+.status-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text)
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px
+}
+
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .05);
+  overflow: hidden;
+  border: 1px solid #f0f0f5;
+  position: relative;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, .1)
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  color: var(--muted)
+}
+
+.id {
+  font-weight: 700
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  opacity: 0.7
+}
+
+.remove-btn:hover {
+  opacity: 1;
+  background: #ffebee;
+  transform: scale(1.1)
+}
+
+.art {
+  background: #0c0c0c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160px
+}
+
+.art img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  image-rendering: auto
+}
+
+.name {
+  padding: 10px 12px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center
+}
+
+.team-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--hero);
+  color: #fff;
+  border-radius: 20px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(33, 150, 243, .3)
+}
+
+.badge-icon {
+  font-size: 10px
+}
+
+.badge-text {
+  text-transform: uppercase;
+  letter-spacing: 0.5px
+}
+
+@media (max-width:768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+  }
+  
+  .empty-state {
+    padding: 32px 16px
+  }
+  
+  .empty-icon {
+    font-size: 48px
+  }
+  
+  .empty-state h3 {
+    font-size: 20px
+  }
+  
+  .team-status {
+    padding: 12px 16px
+  }
+  
+  .status-icon {
+    font-size: 20px
+  }
+  
+  .status-text {
+    font-size: 14px
+  }
+}

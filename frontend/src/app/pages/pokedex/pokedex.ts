@@ -48,6 +48,12 @@ export class PokedexComponent implements OnInit {
   });
 
   hoveredCard: PokemonCard | null = null;
+  
+  // Favorites and Battle Team
+  favorites = signal<number[]>([]);
+  battleTeam = signal<number[]>([]);
+  readonly MAX_BATTLE_TEAM_SIZE = 6;
+  readonly API_BASE_URL = 'http://localhost:8000/api';
 
   onCardHover(card: PokemonCard | null) {
     this.hoveredCard = card;
@@ -57,10 +63,85 @@ export class PokedexComponent implements OnInit {
     this.router.navigate(['/pokemon', card.id]);
   }
 
+  async toggleFavorite(pokemon: PokemonCard) {
+    try {
+      const response = await this.http.post(`${this.API_BASE_URL}/favoritos/${pokemon.id}/`, {}).toPromise();
+      
+      // Update local state based on API response
+      const currentFavorites = this.favorites();
+      const index = currentFavorites.indexOf(pokemon.id);
+      
+      if (index > -1) {
+        this.favorites.set(currentFavorites.filter(id => id !== pokemon.id));
+      } else {
+        this.favorites.set([...currentFavorites, pokemon.id]);
+      }
+    } catch (error) {
+      console.error('Error toggling favorite:', error);
+      alert('Erro ao atualizar favorito. Tente novamente.');
+    }
+  }
+
+  isFavorite(pokemon: PokemonCard): boolean {
+    return this.favorites().includes(pokemon.id);
+  }
+
+  async addToBattleTeam(pokemon: PokemonCard) {
+    try {
+      const response: any = await this.http.post(`${this.API_BASE_URL}/grupo-batalha/${pokemon.id}/`, {}).toPromise();
+      
+      if (response.erro) {
+        alert(response.erro);
+        return;
+      }
+      
+      // Update local state based on API response
+      const currentTeam = this.battleTeam();
+      const index = currentTeam.indexOf(pokemon.id);
+      
+      if (index > -1) {
+        this.battleTeam.set(currentTeam.filter(id => id !== pokemon.id));
+      } else {
+        this.battleTeam.set([...currentTeam, pokemon.id]);
+      }
+    } catch (error) {
+      console.error('Error adding to battle team:', error);
+      alert('Erro ao atualizar time de batalha. Tente novamente.');
+    }
+  }
+
+  isInBattleTeam(pokemon: PokemonCard): boolean {
+    return this.battleTeam().includes(pokemon.id);
+  }
+
+  private async loadUserFavorites() {
+    try {
+      const response = await this.http.get<any[]>(`${this.API_BASE_URL}/favoritos/`).toPromise();
+      const favorites = response || [];
+      this.favorites.set(favorites.map(fav => fav.id));
+    } catch (error) {
+      console.error('Error loading favorites:', error);
+      // Don't show error for non-authenticated users, just keep empty array
+    }
+  }
+
+  private async loadUserBattleTeam() {
+    try {
+      const response = await this.http.get<any[]>(`${this.API_BASE_URL}/grupo-batalha/`).toPromise();
+      const battleTeam = response || [];
+      this.battleTeam.set(battleTeam.map(pokemon => pokemon.id));
+    } catch (error) {
+      console.error('Error loading battle team:', error);
+      // Don't show error for non-authenticated users, just keep empty array
+    }
+  }
+
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.loadGeneration(this.generation);
+    this.loadUserFavorites();
+    this.loadUserBattleTeam();
   }
 
   onGenerationChange(gen: number) {
