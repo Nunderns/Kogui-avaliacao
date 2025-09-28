@@ -4,11 +4,19 @@
   </div>
   <ul class="navbar-links">
     <li *ngIf="!isLoggedIn()"><a routerLink="/login" routerLinkActive="active">Login</a></li>
-    <li *ngIf="isLoggedIn()"><span>Olá, {{ getUsername() }}</span></li>
+    <li *ngIf="isLoggedIn()" class="user-menu">
+      <div class="user-dropdown" (click)="toggleDropdown()">
+        <span>Olá, {{ getUsername() }}</span>
+        <span class="dropdown-arrow">▼</span>
+      </div>
+      <div class="dropdown-content" *ngIf="showDropdown">
+        <a (click)="logout()">Sair</a>
+      </div>
+    </li>
     <li><a routerLink="/pokedex" routerLinkActive="active">Pokédex</a></li>
     <li><a routerLink="/pokemons" routerLinkActive="active">Pokémons</a></li>
-    <li><a routerLink="/favoritos" routerLinkActive="active">Favoritos</a></li>
-    <li><a routerLink="/grupo" routerLinkActive="active">Grupo</a></li>
+    <li><a routerLink="/favorites" routerLinkActive="active">Favoritos</a></li>
+    <li><a routerLink="/battle-team" routerLinkActive="active">Time de Batalha</a></li>
   </ul>
 </nav>
 

@@ -1,0 +1,38 @@
+<div class="hero">
+  <div class="hero-content">
+    <h1>Meus Favoritos</h1>
+    <p>Aqui estão todos os Pokémon que você marcou como favoritos.</p>
+    <div class="stats">
+      <div class="stat"><span>{{ favorites.length }}</span><small>Favoritos</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="status" *ngIf="loading">Carregando favoritos...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error" class="favorites-container">
+    <div *ngIf="favorites.length === 0" class="empty-state">
+      <div class="empty-icon">⭐</div>
+      <h3>Você não tem favoritos ainda</h3>
+      <p>Volte para a Pokédex e adicione alguns Pokémon aos seus favoritos!</p>
+      <button class="btn-primary" (click)="router.navigate(['/pokedex'])">Ir para Pokédex</button>
+    </div>
+
+    <div *ngIf="favorites.length > 0" class="grid">
+      <div class="card" *ngFor="let p of favorites" (click)="onCardClick(p)">
+        <div class="card-header">
+          <span class="id">#{{ p.id | number:'2.0-0' }}</span>
+          <button class="remove-btn" (click)="removeFavorite(p, $event)" title="Remover dos favoritos">
+            ❌
+          </button>
+        </div>
+        <div class="art">
+          <img [src]="p.imagem" [alt]="p.nome" />
+        </div>
+        <div class="name">{{ p.nome | titlecase }}</div>
+      </div>
+    </div>
+  </div>
+</div>

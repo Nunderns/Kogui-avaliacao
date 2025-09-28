@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 })
 export class App {
   protected readonly title = signal('frontend');
+  showDropdown = false;
+  
   constructor(private router: Router) {}
 
   isLoggedIn(): boolean {
@@ -18,6 +20,10 @@ export class App {
 
   getUsername(): string {
     return localStorage.getItem('username') || 'Usuário';
+  }
+
+  toggleDropdown(): void {
+    this.showDropdown = !this.showDropdown;
   }
 
   logout(): void {
