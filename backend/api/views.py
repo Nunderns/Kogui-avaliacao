@@ -81,3 +81,26 @@ def toggle_grupo(request, pokemon_id):
     pokemon.grupo_batalha = not pokemon.grupo_batalha
     pokemon.save()
     return Response({"grupo_batalha": pokemon.grupo_batalha})
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def change_password(request):
+    """Allow an authenticated user to change their password by providing the current password and a new password."""
+    current_password = request.data.get('current_password')
+    new_password = request.data.get('new_password')
+
+    if not current_password or not new_password:
+        return Response({"detail": "Parâmetros obrigatórios: current_password e new_password."}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = request.user
+    if not user.check_password(current_password):
+        return Response({"detail": "Senha atual incorreta."}, status=status.HTTP_400_BAD_REQUEST)
+
+    # Opcional: validar força mínima da senha
+    if len(new_password) < 6:
+        return Response({"detail": "A nova senha deve ter pelo menos 6 caracteres."}, status=status.HTTP_400_BAD_REQUEST)
+
+    user.set_password(new_password)
+    user.save()
+    return Response({"detail": "Senha alterada com sucesso."})

@@ -8,4 +8,5 @@ urlpatterns = [
     path('favoritos/<int:pokemon_id>/', views.toggle_favorito),
     path('grupo-batalha/<int:pokemon_id>/', views.toggle_grupo),
     path('register/', views.register_user),
+    path('change-password/', views.change_password),
 ]
