@@ -5,6 +5,7 @@
   <ul class="navbar-links">
     <li *ngIf="!isLoggedIn()"><a routerLink="/login" routerLinkActive="active">Login</a></li>
     <li *ngIf="isLoggedIn()"><span>Olá, {{ getUsername() }}</span></li>
+    <li><a routerLink="/pokedex" routerLinkActive="active">Pokédex</a></li>
     <li><a routerLink="/pokemons" routerLinkActive="active">Pokémons</a></li>
     <li><a routerLink="/favoritos" routerLinkActive="active">Favoritos</a></li>
     <li><a routerLink="/grupo" routerLinkActive="active">Grupo</a></li>
