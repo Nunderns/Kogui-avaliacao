@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+
+# Virtualenv
+venv/
+.env/
+
+# Django
+staticfiles/
+media/
+*.sqlite3
+
+# VCS
+.git/
+.gitignore
+
+# Node (if any nested)
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
