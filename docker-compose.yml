@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: kogui_api
+    env_file: []
+    environment:
+      DJANGO_ALLOWED_HOSTS: "*"
+      # Optional: auto-create superuser
+      # DJANGO_SUPERUSER_USERNAME: admin
+      # DJANGO_SUPERUSER_PASSWORD: admin
+      # DJANGO_SUPERUSER_EMAIL: admin@example.com
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app:rw
+    restart: unless-stopped
+
+volumes: {}
