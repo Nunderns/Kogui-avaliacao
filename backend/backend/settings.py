@@ -138,3 +138,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# Authentication redirects
+# Ensure login_required redirects to Django Admin login instead of non-existent /accounts/login/
+LOGIN_URL = '/admin/login/'

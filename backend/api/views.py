@@ -3,6 +3,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 from .models import Usuario, PokemonUsuario
 
@@ -104,3 +106,15 @@ def change_password(request):
     user.set_password(new_password)
     user.save()
     return Response({"detail": "Senha alterada com sucesso."})
+
+
+# ----- HTML view: Superuser-only access page for user management -----
+def _is_superuser(user):
+    return user.is_authenticated and user.is_superuser
+
+
+@login_required
+@user_passes_test(_is_superuser)
+def admin_access_page(request):
+    """Página HTML para superusuário com acesso rápido ao Django Admin."""
+    return render(request, "api/admin_access.html", {})
