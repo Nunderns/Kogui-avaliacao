@@ -44,4 +44,13 @@ export class ApiService {
   toggleGrupoBatalha(id: number): Observable<any> {
     return this.http.post(`${this.baseUrl}/grupo-batalha/${id}/`, {});
   }
+
+  // 🔹 Alterar senha do usuário autenticado
+  changePassword(current_password: string, new_password: string): Observable<any> {
+    // Ajuste o endpoint conforme o backend exposto (ex.: /change-password/ ou /users/change-password/)
+    return this.http.post(`${this.baseUrl}/change-password/`, {
+      current_password,
+      new_password
+    });
+  }
 }

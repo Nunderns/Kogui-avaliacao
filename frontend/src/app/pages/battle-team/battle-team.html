@@ -10,7 +10,23 @@
 </div>
 
 <div class="content">
-  <div class="status" *ngIf="loading">Carregando time de batalha...</div>
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="btn-secondary" (click)="router.navigate(['/pokedex'])">← Voltar para Pokédex</button>
+    <div class="spacer"></div>
+    <div class="pill" [class.full]="isTeamFull()">
+      {{ getTeamSize() }}/{{ MAX_TEAM_SIZE }} no time
+    </div>
+    <button class="btn-primary" *ngIf="!isTeamFull()" (click)="router.navigate(['/pokedex'])">Adicionar Pokémon</button>
+  </div>
+
+  <!-- Loading state -->
+  <div *ngIf="loading">
+    <div class="status">Carregando time de batalha...</div>
+    <div class="grid skeleton">
+      <div class="skeleton-card" *ngFor="let i of [0,1,2,3,4,5]"></div>
+    </div>
+  </div>
   <div class="error" *ngIf="error">{{ error }}</div>
 
   <div *ngIf="!loading && !error" class="battle-team-container">
@@ -34,18 +50,21 @@
       <div class="card" *ngFor="let p of battleTeam" (click)="onCardClick(p)">
         <div class="card-header">
           <span class="id">#{{ p.id | number:'2.0-0' }}</span>
-          <button class="remove-btn" (click)="removeFromBattleTeam(p, $event)" title="Remover do time">
-            ❌
-          </button>
+          <div class="header-actions" (click)="$event.stopPropagation()">
+            <div class="team-badge">
+              <span class="badge-icon">⚔️</span>
+              <span class="badge-text">Time</span>
+            </div>
+            <button class="remove-btn" (click)="removeFromBattleTeam(p, $event)" title="Remover do time">
+              <span class="remove-icon">❌</span>
+              <span class="remove-text">Remover</span>
+            </button>
+          </div>
         </div>
         <div class="art">
           <img [src]="p.imagem" [alt]="p.nome" />
         </div>
         <div class="name">{{ p.nome | titlecase }}</div>
-        <div class="team-badge">
-          <span class="badge-icon">⚔️</span>
-          <span class="badge-text">Time</span>
-        </div>
       </div>
     </div>
   </div>
