@@ -9,4 +9,6 @@ urlpatterns = [
     path('grupo-batalha/<int:pokemon_id>/', views.toggle_grupo),
     path('register/', views.register_user),
     path('change-password/', views.change_password),
+    # Superuser-only HTML page that links to Django Admin
+    path('admin-access/', views.admin_access_page, name='admin_access'),
 ]

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acesso à Gestão de Usuários</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif; margin: 2rem; }
+    .card { max-width: 680px; padding: 1.5rem; border: 1px solid #ddd; border-radius: 12px; }
+    h1 { margin-top: 0; }
+    .actions { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+    .btn { appearance: none; border: none; border-radius: 8px; padding: .75rem 1rem; cursor: pointer; font-weight: 600; }
+    .btn-primary { background: #0d6efd; color: #fff; }
+    .btn-outline { background: transparent; border: 1px solid #999; color: inherit; }
+    .meta { color: #666; font-size: .9rem; margin-top: .75rem; }
+    .list { margin: .5rem 0 0 1rem; }
+    a.btn { text-decoration: none; display: inline-block; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Acesso para Gestão de Usuários</h1>
+    <p>Você está autenticado como superusuário. Utilize os atalhos abaixo para abrir o Django Admin e gerenciar usuários.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/admin/auth/user/" target="_self">Abrir lista de Usuários</a>
+      <a class="btn btn-outline" href="/admin/" target="_self">Abrir Django Admin</a>
+    </div>
+    <p class="meta">Dica: você também pode criar novos usuários, ajustar permissões (staff/superuser) e redefinir senhas diretamente pelo Django Admin.</p>
+    <h3>Recursos</h3>
+    <ul class="list">
+      <li>Lista, criação e edição de usuários</li>
+      <li>Definição de grupos e permissões</li>
+      <li>Busca por nome de usuário e e‑mail</li>
+    </ul>
+  </div>
+</body>
+</html>
